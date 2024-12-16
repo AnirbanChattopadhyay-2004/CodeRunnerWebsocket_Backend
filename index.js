@@ -5,9 +5,12 @@ const cors = require("cors")
 const app = express();
 app.use(cors())
 const server = createServer(app);
+require('dotenv/config')
+const url = process.env.url
+
 const io = new Server(server, {
  cors:{
-  origin:"http://localhost:5173"
+  origin:url || "http://localhost:5173"
  }
 }); 
 io.on('connection', (socket) => {
